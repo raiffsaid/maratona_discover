@@ -145,6 +145,14 @@
                 document.querySelector('.modal-overlay').classList.remove('active');
             }
         }
+
+        const Switch = document.querySelector('.theme-toggle');
+
+        Switch.addEventListener('click', () => {
+            document.body.classList.toggle("dark-theme");
+        });
+
+
     </script>
 </body>
 </html>
