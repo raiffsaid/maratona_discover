@@ -18,7 +18,7 @@ html {
 /* TEMA ESCURO */
 html[data-theme="dark"] {
     --background-color: #333;
-    --text-color: #b5b5b5;
+    --text-color: #fff;
     --elements-color: #434343;
     --default-green: #173d0a;
 }
@@ -184,9 +184,23 @@ header {
     text-align: center;
 }
 
-#logo {
-    color: #fff;
-    font-weight: 100;
+header label,
+header input {
+    position: relative;
+    top: 7rem;
+    right: 100rem;
+}
+
+#sun {
+    position: relative;
+    top: 7rem;
+    right: 39.8rem;
+}
+
+#moon {
+    position: relative;
+    top: 7rem;
+    right: 35.8rem;
 }
 
 /* BALANCE */
