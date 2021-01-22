@@ -1,6 +1,8 @@
 /* GLOBAL */
 :root {
     --dark-blue: #363f5f;
+    --default-green: #49aa26;
+    --light-green: #3dd705;
 }
 
 * {
@@ -38,7 +40,7 @@ body {
 
 /* LINKS & BUTTONS */
 a {
-    color: #49aa26;
+    color: var(--default-green);
     text-decoration: none;
 }
 
@@ -46,9 +48,44 @@ a:hover {
     color: #3dd705;
 }
 
+button {
+    width: 100%;
+    height: 50px;
+    padding: 0;
+
+    border: none;
+    border-radius: 0.2rem;
+
+    color: #fff;
+    background: var(--default-green);
+}
+
+button:hover {
+    background: var(--light-green);
+}
+
 .button.new {
     display: inline-block;
     margin-bottom: 0.8rem;
+}
+
+.button.cancel {
+    color: #e92929;
+
+    border: 2px #e92929 solid;
+    border-radius: 0.2rem;
+
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0.6;
+}
+
+.button.cancel:hover {
+    opacity: 1;
 }
 
 /* TITLES */
@@ -110,7 +147,7 @@ header {
 }
 
 .card.total {
-    background: #49aa26;
+    background: var(--default-green);
     color: #fff;
 }
 
@@ -172,6 +209,71 @@ td.income {
 
 td.expense {
     color: #e92929;
+}
+
+/* MODAL */
+.modal-overlay {
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.7);
+
+    position: fixed;
+    top: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    background: #f0f2f5;
+    padding: 2.4rem;
+    width: 90%;
+}
+
+/* FORM */
+#form {
+    max-width: 500px;
+}
+
+#form h2 {
+    margin-top: 0;
+}
+
+#form form input {
+    border: none;
+    border-radius: 0.2rem;
+
+    padding: 0.8rem;
+    width: 100%;
+}
+
+.input-group {
+    margin-top: 0.8rem;
+}
+
+.input-group small {
+    opacity: 0.4;
+}
+
+.input-group.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-group.actions .button,
+.input-group.actions button {
+    width: 50%;
 }
 
 /* FOOTER */
