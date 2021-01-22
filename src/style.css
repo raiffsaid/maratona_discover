@@ -1,10 +1,4 @@
 /* GLOBAL */
-:root {
-    --dark-blue: #363f5f;
-    --default-green: #49aa26;
-    --light-green: #3dd705;
-}
-
 * {
     margin: 0;
     padding: 0;
@@ -12,12 +6,78 @@
 }
 
 html {
+    --background-color: #f0f2f5;
+    --text-color: #363f5f;
+    --default-green: #49aa26;
+    --light-green: #3dd705;
+    --elements-color: #fff;
+
     font-size: 93.75%;
 }
 
+/* TEMA ESCURO */
+html[data-theme="dark"] {
+    --background-color: #333;
+    --text-color: #b5b5b5;
+    --elements-color: #434343;
+    --default-green: #173d0a;
+}
+
+/* TRANSIÇÃO TEMA ESCURO */
+html.transition,
+html.transition *,
+html.transition *:before,
+html.transition *:after {
+  transition: all 500ms !important;
+  transition-delay: 0 !important;
+}
+
 body {
-    background: #f0f2f5;
+    background: var(--background-color);
     font-family: 'Poppins', sans-serif;
+}
+
+/* TOGGLE SWITCH */
+input[type=checkbox]{
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+
+label {
+	cursor: pointer;
+	text-indent: -9999px;
+	width: 52px;
+	height: 27px;
+	background: grey;
+	float: right;
+	border-radius: 100px;
+	position: relative;
+}
+
+label:after {
+	content: '';
+	position: absolute;
+	top: 3px;
+	left: 3px;
+	width: 20px;
+	height: 20px;
+	background: #fff;
+	border-radius: 90px;
+	transition: 0.3s;
+}
+
+input:checked + label {
+	background: #203450;
+}
+
+input:checked + label:after {
+	left: calc(100% - 5px);
+	transform: translateX(-100%);
+}
+
+label:active:after {
+	width: 45px;
 }
 
 /* CSS Tricks para esconder o elemento sem afetar os leitores de tela */
@@ -113,7 +173,7 @@ h2 {
     margin-top: 3.2rem;
     margin-bottom: 0.8rem;
 
-    color: var(--dark-blue);
+    color: var(--text-color);
     font-weight: normal;
 }
 
@@ -141,11 +201,11 @@ header {
 
 /* CARDS */
 .card {
-    background: #fff;
+    background: var(--elements-color);
     padding: 1.5rem 2rem;
     border-radius: 0.25rem;
 
-    color: var(--dark-blue);
+    color: var(--text-color);
 
     margin-bottom: 2rem;
 }
@@ -220,7 +280,7 @@ table tbody td {
 }
 
 td.description {
-    color: var(--dark-blue);
+    color: var(--text-color);
 }
 
 td.income {
@@ -312,7 +372,7 @@ footer {
     text-align: center;
     padding: 4rem 0 2rem;
 
-    color: var(--dark-blue);
+    color: var(--text-color);
     opacity: 0.6;
 }
 
