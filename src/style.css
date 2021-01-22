@@ -42,10 +42,24 @@ body {
 a {
     color: var(--default-green);
     text-decoration: none;
+
+    transition: 500ms;
 }
 
 a:hover {
     color: #3dd705;
+}
+
+a::after {
+    display: block;
+    content: '';
+    border-bottom: solid 2px var(--light-green);  
+    transform: scaleX(0);  
+    transition: transform 500ms ease-in-out;
+}
+
+a:hover::after {
+    transform: scaleX(1);
 }
 
 button {
@@ -58,6 +72,8 @@ button {
 
     color: #fff;
     background: var(--default-green);
+
+    transition: 500ms;
 }
 
 button:hover {
@@ -82,10 +98,14 @@ button:hover {
     justify-content: center;
 
     opacity: 0.6;
+
+    cursor: default;
+    transition: 500ms;
 }
 
 .button.cancel:hover {
     opacity: 1;
+    transition: 400ms;
 }
 
 /* TITLES */
@@ -227,6 +247,8 @@ td.expense {
 
     opacity: 0;
     visibility: hidden;
+
+    z-index: 999;
 }
 
 .modal-overlay.active {
@@ -237,7 +259,9 @@ td.expense {
 .modal {
     background: #f0f2f5;
     padding: 2.4rem;
-    width: 90%;
+
+    position: relative;
+    z-index: 1;
 }
 
 /* FORM */
@@ -250,11 +274,18 @@ td.expense {
 }
 
 #form form input {
+    outline: none;
     border: none;
     border-radius: 0.2rem;
 
     padding: 0.8rem;
     width: 100%;
+
+    transition: 500ms;
+}
+
+#form form input:focus {
+    box-shadow: 0 0 0.2rem var(--default-green);
 }
 
 .input-group {
@@ -267,13 +298,13 @@ td.expense {
 
 .input-group.actions {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
 .input-group.actions .button,
 .input-group.actions button {
-    width: 50%;
+    width: 45%;
 }
 
 /* FOOTER */
@@ -295,5 +326,11 @@ footer {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 2rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .modal {
+        width: 90%;
     }
 }
