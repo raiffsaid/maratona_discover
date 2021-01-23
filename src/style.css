@@ -104,6 +104,10 @@ input:checked[type="checkbox"]::before {
 }
 
 /* LINKS & BUTTONS */
+header span {
+    display: none;
+}
+
 a {
     color: #49aa26;
     text-decoration: none;
@@ -187,20 +191,6 @@ header {
     background: #2d4a22;
     padding: 2rem 0 10rem;
     text-align: center;
-}
-
-/* MOBILE MENU */
-.menu_mobile {
-    display: none;
-    width: 40px;
-    height: 40px;
-    right: 5vw;
-    top: 2.5vh;
-}
-
-.mm_line {
-    height: 2px;
-    background-color: var(--background-color);
 }
 
 /* BALANCE */
@@ -403,14 +393,13 @@ footer {
 }
 
 @media (max-width: 640px) {
-    .menu_mobile {
-        position: absolute;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-    }
-
     .toggle {
         display: none;
+    }
+
+    header span {
+        display: inline-block;
+        position: absolute;
+        right: 5vw;
     }
 }

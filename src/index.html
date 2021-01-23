@@ -24,15 +24,12 @@
             <img id="moon" src="./assets/moon.svg" alt="Tema Escuro">
         </div>
 
-        <div class="menu">
-            <nav>
-                <div class="menu_mobile">
-                    <div class="mm_line"></div>
-                    <div class="mm_line"></div>
-                    <div class="mm_line"></div>
-                </div>
-            </nav>
-        </div>
+        <span>
+            <a href="#" onclick="changeTheme()" title="Switch Theme">
+                <img id="mobileTheme" src="./assets/sun.svg" alt="Alternar tema">
+            </a>
+        </span>
+
     </header>
 
     <main class="container">
@@ -181,6 +178,15 @@
             window.setTimeout(() => {
                 document.documentElement.classList.remove('transition');
             }, 1000);
+        }
+
+        function changeTheme() {
+            let tema = document.getElementById("mobileTheme").src;
+            if (tema == "./assets/moon.svg") {
+                document.getElementById("mobileTheme").src = "./assets/sun.svg";
+            } else {
+                document.getElementById("mobileTheme").src = "./assets/moon.svg";
+          }
         }
     </script>
 </body>
