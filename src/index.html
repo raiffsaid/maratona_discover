@@ -23,6 +23,16 @@
 
             <img id="moon" src="./assets/moon.svg" alt="Tema Escuro">
         </div>
+
+        <div class="menu">
+            <nav>
+                <div class="menu_mobile">
+                    <div class="mm_line"></div>
+                    <div class="mm_line"></div>
+                    <div class="mm_line"></div>
+                </div>
+            </nav>
+        </div>
     </header>
 
     <main class="container">
@@ -160,16 +170,13 @@
             if (checkbox.checked) {
                 transition();
                 document.documentElement.setAttribute('data-theme', 'dark');
-                console.log("ativado");
             } else {
                 transition();
                 document.documentElement.setAttribute('data-theme', 'light');
-                console.log("desativado");
-
             }
         });
 
-        let transition = () => {
+        function transition() {
             document.documentElement.classList.add('transition');
             window.setTimeout(() => {
                 document.documentElement.classList.remove('transition');
