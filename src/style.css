@@ -379,6 +379,10 @@ footer {
     opacity: 0.6;
 }
 
+header span a::after {
+    all: initial;
+}
+
 /* RESPONSIVE */
 @media (min-width: 800px) {
     html {
