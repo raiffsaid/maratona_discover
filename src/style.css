@@ -108,6 +108,10 @@ header span {
     display: none;
 }
 
+header span a::after {
+    all: initial;
+}
+
 a {
     color: #49aa26;
     text-decoration: none;
@@ -377,10 +381,6 @@ footer {
 
     color: var(--text-color);
     opacity: 0.6;
-}
-
-header span a::after {
-    all: initial;
 }
 
 /* RESPONSIVE */
