@@ -12,6 +12,7 @@ html {
     --default-green: #49aa26;
     --light-green: #3dd705;
     --elements-color: #fff;
+    --box-shadow: #555;
 
     font-size: 93.75%;
 }
@@ -212,6 +213,7 @@ header {
     background: var(--elements-color);
     padding: 1.5rem 2rem;
     border-radius: 0.25rem;
+    box-shadow: 0.25rem 0.25rem 4px var(--box-shadow);
 
     color: var(--text-color);
 
