@@ -23,6 +23,7 @@ html[data-theme="dark"] {
     --text-color: #fff;
     --elements-color: #434343;
     --default-green: #173d0a;
+    --box-shadow: #fff;
 }
 
 /* TRANSIÇÃO TEMA ESCURO */
@@ -213,7 +214,7 @@ header {
     background: var(--elements-color);
     padding: 1.5rem 2rem;
     border-radius: 0.25rem;
-    box-shadow: 0.25rem 0.25rem 4px var(--box-shadow);
+    box-shadow: 0.5rem 0.5rem 5px 0 var(--box-shadow);
 
     color: var(--text-color);
 
