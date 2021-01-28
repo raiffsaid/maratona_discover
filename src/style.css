@@ -23,7 +23,7 @@ html[data-theme="dark"] {
     --text-color: #fff;
     --elements-color: #434343;
     --default-green: #173d0a;
-    --box-shadow: #fff;
+    --box-shadow: #222;
 }
 
 /* TRANSIÇÃO TEMA ESCURO */
