@@ -1,12 +1,71 @@
 const Modal = {
-    open() {
-        document.querySelector('.modal-overlay').classList.add('active');
-    },
-    close() {
-        document.querySelector('.modal-overlay').classList.remove('active');
+    toggle() {
+        document.querySelector('.modal-overlay').classList.toggle('active');
     }
 }
 
+const transactions = [
+    {
+        id: 1,
+        description: 'Luz',
+        amount: -50000,
+        date: '29/01/2021',
+    },
+    {
+        id: 2,
+        description: 'Internet',
+        amount: -20000,
+        date: '29/01/2021',
+    },
+    {
+        id: 3,
+        description: 'Salário',
+        amount: 500000,
+        date: '29/01/2021',
+    },
+];
+
+const Transaction = {
+    incomes() {
+
+    },
+    expenses() {
+
+    },
+    total() {
+
+    }
+}
+
+const DOM = {
+    transactionsContainer: document.querySelector('#data-table tbody'),
+
+    addTransaction(transaction, index) {
+        const tr = document.createElement('tr');
+        tr.innerHTML = DOM.innerHTMLTransaction(transaction);
+
+        DOM.transactionsContainer.appendChild(tr);
+    },
+    innerHTMLTransaction(transaction) {
+        const html = 
+        `
+            <td class="description">${transaction.description}</td>
+            <td class="expense">${transaction.amount}</td>
+            <td class="date">${transaction.date}</td>
+            <td><img src="./assets/minus.svg" alt="Remover Transação"></td>
+        `
+
+        return html;
+    }
+}
+
+transactions.forEach((transaction) => {
+    DOM.addTransaction(transaction);
+});
+
+/**
+ * Altera tema light / dark
+ */
 let checkbox = document.querySelector('input[name=theme]');
 
 checkbox.addEventListener('change', () => {
@@ -19,13 +78,9 @@ checkbox.addEventListener('change', () => {
     }
 });
 
-function transition() {
-    document.documentElement.classList.add('transition');
-    window.setTimeout(() => {
-        document.documentElement.classList.remove('transition');
-    }, 1000);
-}
-
+/**
+ * Altera tema light / dark no mobile
+ */
 function changeMobileTheme() {
     // Salva o diretório atual
     let loc = window.location.href;
@@ -40,4 +95,14 @@ function changeMobileTheme() {
         transition();
         document.documentElement.setAttribute('data-theme', 'dark');
   }
+}
+
+/**
+ * Cria suavização na troca de tema
+ */
+function transition() {
+    document.documentElement.classList.add('transition');
+    window.setTimeout(() => {
+        document.documentElement.classList.remove('transition');
+    }, 1000);
 }
