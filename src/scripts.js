@@ -23,17 +23,39 @@ const transactions = [
         amount: 500000,
         date: '29/01/2021',
     },
+    {
+        id: 4,
+        description: 'Aplicativo',
+        amount: 1000000,
+        date: '10/01/2021',
+    }
 ];
 
 const Transaction = {
     incomes() {
+        let income = 0;
 
+        transactions.forEach(transaction => {
+            if (transaction.amount > 0) {
+                income += transaction.amount;
+            }
+        });
+
+        return income;
     },
     expenses() {
+        let expense = 0;
 
+        transactions.forEach(transaction => {
+            if (transaction.amount < 0) {
+                expense += transaction.amount;
+            }
+        });
+
+        return expense;
     },
     total() {
-
+        return Transaction.incomes() + Transaction.expenses();
     }
 }
 
@@ -60,6 +82,19 @@ const DOM = {
         `
 
         return html;
+    },
+    updateBalance() {
+        document
+            .getElementById('incomeDisplay')
+            .innerHTML = Utils.formatCurrency(Transaction.incomes());
+
+        document
+            .getElementById('expenseDisplay')
+            .innerHTML = Utils.formatCurrency(Transaction.expenses());
+
+        document
+            .getElementById('totalDisplay')
+            .innerHTML = Utils.formatCurrency(Transaction.total());
     }
 }
 
@@ -83,6 +118,8 @@ const Utils = {
 transactions.forEach((transaction) => {
     DOM.addTransaction(transaction);
 });
+
+DOM.updateBalance();
 
 /**
  * Altera tema light / dark
