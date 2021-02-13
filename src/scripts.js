@@ -1,3 +1,50 @@
+const Theme = {
+    /**
+     * Altera tema light / dark
+     */
+    themeSwitcher() {
+        let checkbox = document.querySelector('input[name=theme]');
+
+        checkbox.addEventListener('change', () => {
+            if (checkbox.checked) {
+                transition();
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                transition();
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        });
+    },
+
+    /**
+     * Altera tema light / dark no mobile
+     */
+    mobileThemeSwitcher() {
+        // Salva o diretório atual
+        let loc = window.location.href;
+        let dir = loc.substring(0, loc.lastIndexOf('/'));
+
+        if (document.getElementById("mobileTheme").src == dir + "/assets/moon.svg") {
+            document.getElementById("mobileTheme").src = (dir + "/assets/sun.svg");
+            transition();
+            document.documentElement.setAttribute('data-theme', 'light');
+        } else {
+            document.getElementById("mobileTheme").src = (dir + "/assets/moon.svg");
+            transition();
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    },
+    /**
+     * Cria suavização na troca de tema
+     */
+    transition() {
+        document.documentElement.classList.add('transition');
+        window.setTimeout(() => {
+            document.documentElement.classList.remove('transition');
+        }, 1000);
+    }
+}
+
 const Modal = {
     toggle() {
         document.querySelector('.modal-overlay').classList.toggle('active');
@@ -207,46 +254,6 @@ const App = {
 App.init();
 
 
-/**
- * Altera tema light / dark
- */
-let checkbox = document.querySelector('input[name=theme]');
 
-checkbox.addEventListener('change', () => {
-    if (checkbox.checked) {
-        transition();
-        document.documentElement.setAttribute('data-theme', 'dark');
-    } else {
-        transition();
-        document.documentElement.setAttribute('data-theme', 'light');
-    }
-});
 
-/**
- * Altera tema light / dark no mobile
- */
-function changeMobileTheme() {
-    // Salva o diretório atual
-    let loc = window.location.href;
-    let dir = loc.substring(0, loc.lastIndexOf('/'));
 
-    if (document.getElementById("mobileTheme").src == dir + "/assets/moon.svg") {
-        document.getElementById("mobileTheme").src = (dir + "/assets/sun.svg");
-        transition();
-        document.documentElement.setAttribute('data-theme', 'light');
-    } else {
-        document.getElementById("mobileTheme").src = (dir + "/assets/moon.svg");
-        transition();
-        document.documentElement.setAttribute('data-theme', 'dark');
-  }
-}
-
-/**
- * Cria suavização na troca de tema
- */
-function transition() {
-    document.documentElement.classList.add('transition');
-    window.setTimeout(() => {
-        document.documentElement.classList.remove('transition');
-    }, 1000);
-}
