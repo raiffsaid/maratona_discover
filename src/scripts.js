@@ -7,10 +7,10 @@ const Theme = {
 
         checkbox.addEventListener('change', () => {
             if (checkbox.checked) {
-                transition();
+                Theme.transition();
                 document.documentElement.setAttribute('data-theme', 'dark');
             } else {
-                transition();
+                Theme.transition();
                 document.documentElement.setAttribute('data-theme', 'light');
             }
         });
@@ -26,14 +26,15 @@ const Theme = {
 
         if (document.getElementById("mobileTheme").src == dir + "/assets/moon.svg") {
             document.getElementById("mobileTheme").src = (dir + "/assets/sun.svg");
-            transition();
+            Theme.transition();
             document.documentElement.setAttribute('data-theme', 'light');
         } else {
             document.getElementById("mobileTheme").src = (dir + "/assets/moon.svg");
-            transition();
+            Theme.transition();
             document.documentElement.setAttribute('data-theme', 'dark');
         }
     },
+
     /**
      * Cria suavização na troca de tema
      */
@@ -251,9 +252,6 @@ const App = {
     }
 }
 
+Theme.themeSwitcher();
+
 App.init();
-
-
-
-
-
