@@ -40,6 +40,11 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+::selection {
+    background-color: #49aa26;
+    color: #fff;
+}
+
 /* TOGGLE SWITCH */
 .toggle {
     display: flex;
