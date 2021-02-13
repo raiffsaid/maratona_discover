@@ -151,6 +151,15 @@ const DOM = {
 
     clearTransactions() {
         DOM.transactionsContainer.innerHTML = '';
+    },
+
+    changeTotalColor() {
+        if (document.getElementById('totalDisplay').innerHTML.includes('-')) {
+            document.querySelector('.total').style.background = '#d42f2f';
+            document.querySelector('.total').style.transition = '1500ms';
+        } else {
+            document.querySelector('.total').style.background = 'var(--default-green)';
+        }
     }
 }
 
@@ -244,10 +253,12 @@ const App = {
         Transaction.all.forEach(DOM.addTransaction);
         DOM.updateBalance();
         Storage.set(Transaction.all);
+        DOM.changeTotalColor();
     },
 
     reload() {
         DOM.clearTransactions();
+        DOM.changeTotalColor();
         App.init();
     }
 }
