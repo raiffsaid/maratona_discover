@@ -154,11 +154,13 @@ const DOM = {
     },
 
     changeTotalColor() {
+        let cardTotal = document.querySelector('.total');
+
         if (document.getElementById('totalDisplay').innerHTML.includes('-')) {
-            document.querySelector('.total').style.background = '#d42f2f';
-            document.querySelector('.total').style.transition = '1500ms';
+            cardTotal.style.background = '#d42f2f';
+            cardTotal.style.transition = '1500ms';
         } else {
-            document.querySelector('.total').style.background = 'var(--default-green)';
+            cardTotal.style.background = 'var(--default-green)';
         }
     }
 }
