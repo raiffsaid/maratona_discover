@@ -24,6 +24,7 @@ html[data-theme="dark"] {
     --elements-color: #434343;
     --default-green: #173d0a;
     --box-shadow: #222;
+    --light-green: #49aa26;
 }
 
 /* TRANSIÇÃO TEMA ESCURO */
@@ -335,11 +336,12 @@ td.expense {
 }
 
 .modal {
-    background: #f0f2f5;
+    background: var(--background-color);
     padding: 2.4rem;
 
     position: relative;
     z-index: 1;
+    
 }
 
 /* FORM */
@@ -349,6 +351,7 @@ td.expense {
 
 #form h2 {
     margin-top: 0;
+    color: var(--text-color);
 }
 
 #form form input {
@@ -360,6 +363,9 @@ td.expense {
     width: 100%;
 
     transition: 500ms;
+
+    background: var(--elements-color);
+    color: var(--text-color);
 }
 
 #form form input:focus {
@@ -372,6 +378,7 @@ td.expense {
 
 .input-group .help {
     opacity: 0.4;
+    color: var(--text-color);
 }
 
 .input-group.actions {
