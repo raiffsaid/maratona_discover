@@ -4,14 +4,21 @@ const Theme = {
      */
     themeSwitcher() {
         let checkbox = document.querySelector('input[name=theme]');
+        
+        let theme = Storage.themeStorage(); // Salva o tema atual na variável theme
+
+        // Se o checkbox possuir o mesmo valor de theme, altera o input do checkbox
+        checkbox.checked = theme == 'dark' ? true : false;
 
         checkbox.addEventListener('change', () => {
             if (checkbox.checked) {
                 Theme.transition();
                 document.documentElement.setAttribute('data-theme', 'dark');
+                window.localStorage.setItem('data-theme', 'dark');
             } else {
                 Theme.transition();
                 document.documentElement.setAttribute('data-theme', 'light');
+                window.localStorage.setItem('data-theme', 'light');
             }
         });
     },
@@ -24,15 +31,26 @@ const Theme = {
         let loc = window.location.href;
         let dir = loc.substring(0, loc.lastIndexOf('/'));
 
-        if (document.getElementById("mobileTheme").src == dir + "/assets/moon.svg") {
-            document.getElementById("mobileTheme").src = (dir + "/assets/sun.svg");
-            Theme.transition();
-            document.documentElement.setAttribute('data-theme', 'light');
-        } else {
-            document.getElementById("mobileTheme").src = (dir + "/assets/moon.svg");
-            Theme.transition();
-            document.documentElement.setAttribute('data-theme', 'dark');
-        }
+        let img = document.getElementById("mobileTheme");
+
+        let theme = Storage.themeStorage();
+
+        // Verifica o tema no localStorage e muda a imagem
+        theme == 'dark' ? img.src = (dir + "/assets/moon.svg") : img.src = (dir + "/assets/sun.svg");
+            
+        img.addEventListener('click', () => {
+            if (theme == 'dark') {
+                img.src = (dir + "/assets/sun.svg");
+                Theme.transition();
+                document.documentElement.setAttribute('data-theme', 'light');
+                window.localStorage.setItem('data-theme', 'light');
+            } else {
+                img.src = (dir + "/assets/moon.svg");
+                Theme.transition();
+                document.documentElement.setAttribute('data-theme', 'dark');
+                window.localStorage.setItem('data-theme', 'dark');
+            }
+        });
     },
 
     /**
@@ -59,6 +77,23 @@ const Storage = {
 
     set(transactions) {
         localStorage.setItem('dev.finances:transactions', JSON.stringify(transactions));
+    },
+
+    themeStorage() {
+        // Consulta o dado do localStorage
+        let getTheme = window.localStorage.getItem('data-theme'); 
+
+        // Atualiza o tema atual de acordo com o dado do localStorage
+        let setTheme = document.documentElement.setAttribute('data-theme', getTheme);
+
+        /**
+         * Verifica se existe algum dado no localStorage, se sim seta o tema salvo
+         * na variável setTheme.
+         * Caso contrário, não realiza nenhuma ação 
+         *  */ 
+        getTheme == true ? setTheme : null; 
+        
+        return getTheme; // Retorna o tema atual salvo no localStorage
     }
 }
 
@@ -263,6 +298,8 @@ const App = {
         DOM.updateBalance();
         Storage.set(Transaction.all);
         DOM.changeTotalColor(Transaction.total());
+        Theme.themeSwitcher();
+        Theme.mobileThemeSwitcher();
     },
 
     reload() {
@@ -271,7 +308,5 @@ const App = {
         App.init();
     }
 }
-
-Theme.themeSwitcher();
 
 App.init();
