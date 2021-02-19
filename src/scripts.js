@@ -69,12 +69,16 @@ const Transaction = {
         Transaction.all.push(transaction);
 
         App.reload();
+
+        DOM.elementTransition();
     },
 
     remove(index) {
         Transaction.all.splice(index, 1);
 
         App.reload();
+
+        DOM.elementTransition();
     },
 
     incomes() {
@@ -102,18 +106,20 @@ const Transaction = {
     },
 
     total() {
-        return Transaction.incomes() + Transaction.expenses();
+        return Transaction.incomes() + Transaction.expenses();    
     }
 }
 
 const DOM = {
     transactionsContainer: document.querySelector('#data-table tbody'),
 
+    cardTotal: document.querySelector('.total'),
+
     addTransaction(transaction, index) {
         const tr = document.createElement('tr');
         tr.innerHTML = DOM.innerHTMLTransaction(transaction, index);
         tr.dataset.index = index;
-
+        
         DOM.transactionsContainer.appendChild(tr);
     },
 
@@ -152,16 +158,17 @@ const DOM = {
     clearTransactions() {
         DOM.transactionsContainer.innerHTML = '';
     },
-
-    changeTotalColor() {
-        let cardTotal = document.querySelector('.total');
-
-        if (document.getElementById('totalDisplay').innerHTML.includes('-')) {
-            cardTotal.style.background = '#d42f2f';
-            cardTotal.style.transition = '1500ms';
+    
+    changeTotalColor(total) {
+        if (total < 0) {
+            DOM.cardTotal.style.background = '#d42f2f';
         } else {
-            cardTotal.style.background = 'var(--default-green)';
+            DOM.cardTotal.style.background = 'var(--default-green)';
         }
+    },
+
+    elementTransition() {
+        DOM.cardTotal.style.transition = '1500ms';
     }
 }
 
@@ -255,12 +262,12 @@ const App = {
         Transaction.all.forEach(DOM.addTransaction);
         DOM.updateBalance();
         Storage.set(Transaction.all);
-        DOM.changeTotalColor();
+        DOM.changeTotalColor(Transaction.total());
     },
 
     reload() {
         DOM.clearTransactions();
-        DOM.changeTotalColor();
+        DOM.changeTotalColor(Transaction.total());
         App.init();
     }
 }
