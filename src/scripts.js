@@ -80,20 +80,14 @@ const Storage = {
     },
 
     themeStorage() {
-        // Consulta o dado do localStorage
+        // Consulta o dado salvo no localStorage
         let getTheme = window.localStorage.getItem('data-theme'); 
 
         // Atualiza o tema atual de acordo com o dado do localStorage
-        let setTheme = document.documentElement.setAttribute('data-theme', getTheme);
+        document.documentElement.setAttribute('data-theme', getTheme);
 
-        /**
-         * Verifica se existe algum dado no localStorage, se sim seta o tema salvo
-         * na variável setTheme.
-         * Caso contrário, não realiza nenhuma ação 
-         *  */ 
-        getTheme == true ? setTheme : null; 
-        
-        return getTheme; // Retorna o tema atual salvo no localStorage
+        // Retorna o tema atual salvo no localStorage
+        return getTheme; 
     }
 }
 
